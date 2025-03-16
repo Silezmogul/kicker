@@ -1,0 +1,36 @@
+# homeserver.yaml
+
+server_name: "your.server.name"
+pid_file: "/data/matrix.pid"
+database:
+  name: "your_database_name"
+  user: "your_database_user"
+  password: "your_database_password"
+  host: "localhost"
+  port: 5432
+  type: "psycopg2"
+  uri: "postgresql://your_database_user:your_database_password@localhost:5432/your_database_name"
+listeners:
+  - port: 8008
+    type: "http"
+    tls: false
+    resources:
+      - names: [ "client" ]
+  - port: 8448
+    type: "http"
+    tls: true
+    resources:
+      - names: [ "client", "federation" ]
+database:
+  driver: "psycopg2"
+  name: "homeserver"
+  user: "homeserver_user"
+  password: "homeserver_password"
+  host: "localhost"
+  port: 5432
+  uri: "postgresql://homeserver_user:homeserver_password@localhost:5432/homeserver"
+registration_shared_secret: "your_shared_secret"
+enable_registration: true
+allow_public_rooms: true
+public_room_visibility: "public"
+```

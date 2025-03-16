@@ -1,0 +1,23 @@
+{
+  "server": {
+    "host": "0.0.0.0",
+    "port": 8080,
+    "protocol": "http"
+  },
+  "database": {
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "username": "kobold_user",
+    "password": "your_password",
+    "database": "kobold_db"
+  },
+  "logging": {
+    "level": "info",
+    "file": "/var/log/kobold.log"
+  },
+  "userPreferences": {
+    "theme": "dark",
+    "language": "en"
+  }
+}
