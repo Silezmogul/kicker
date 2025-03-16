@@ -16,7 +16,7 @@ This project sets up a Podman environment for hosting various containers needed 
 - SSH access to your Steam Deck is enabled.
 - Basic knowledge of using the terminal.
 
-## Steam OS Installation (Steam Deck and other Steam OS devices)
+### Installation on Steam OS
 
 To install and run Kicker on Steam OS devices:
 
@@ -33,10 +33,43 @@ To install and run Kicker on Steam OS devices:
    cd kicker
    ```
 
-3. **Run the management script**:
+3. **Make scripts Executable:**
+chmod +x kicker.sh
+find Scripts -name "*.sh" -exec chmod +x {} \;
+
+4. **Test the installation**:
    ```bash
    ./kicker.sh help
    ```
+
+### Updating on Steam OS
+
+There are two types of updates for Kicker:
+
+1. **Code Updates**
+
+To update the Kicker codebase to the latest version:
+
+```bash
+# Navigate to the project directory
+cd kicker
+
+# Pull the latest changes
+git pull
+
+# Make scripts executable (in case new scripts were added)
+chmod +x kicker.sh
+find Scripts -name "*.sh" -exec chmod +x {} \;
+```
+
+2. **System/Dependencies Updates**
+
+To update Kicker's dependencies and system configurations:
+
+```Bash
+# After updating the code as above
+./kicker.sh update
+```
 
 ### Available Commands
 
@@ -53,12 +86,10 @@ Replace `[command]` with one of the available commands listed below:
 - `start` - Start all services
 - `stop` - Stop all services
 - `restart` - Restart all services
-- `update` - Update the application
+- `update` - Update the runtime environment and dependencies
 - `status` - Show current status
 - `help` - Show this help message
 ```
-
-## Scripts
 
 ## Scripts Overview
 
