@@ -3,7 +3,7 @@
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-SCRIPTS_DIR="$SCRIPT_DIR/Scripts"
+SCRIPTS_DIR="$SCRIPT_DIR/scripts"
 
 function show_help {
   echo "Kicker - Unified Management Script"
