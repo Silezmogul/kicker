@@ -1,25 +1,33 @@
 #!/bin/bash
 
-# Create necessary directories for the applications
-mkdir -p /home/silezmogul/Documents/Stemadeck-companion/steamdeck-podman-apps/config/n8n
-mkdir -p /home/silezmogul/Documents/Stemadeck-companion/steamdeck-podman-apps/config/baserow
-mkdir -p /home/silezmogul/Documents/Stemadeck-companion/steamdeck-podman-apps/config/postgres
-mkdir -p /home/silezmogul/Documents/Stemadeck-companion/steamdeck-podman-apps/config/kobold
-mkdir -p /home/silezmogul/Documents/Stemadeck-companion/steamdeck-podman-apps/config/matrix
-mkdir -p /home/silezmogul/Documents/Stemadeck-companion/steamdeck-podman-apps/volumes
+# Get the current user's home directory instead of hardcoding
+HOME_DIR="$HOME"
+CONFIG_DIR="$HOME_DIR/kicker/config"
+DATA_DIR="$HOME_DIR/kicker/data"
 
-# Pull necessary Podman images
-podman pull n8nio/n8n
-podman pull baserow/baserow
-podman pull postgres:latest
-podman pull koboldai/koboldai
-podman pull matrixdotorg/synapse
+# Create necessary directories
+mkdir -p "$CONFIG_DIR/n8n"
+mkdir -p "$CONFIG_DIR/baserow"
+mkdir -p "$CONFIG_DIR/postgres"
+mkdir -p "$CONFIG_DIR/koboldai"
+mkdir -p "$CONFIG_DIR/synapse"
+mkdir -p "$DATA_DIR/n8n"
+mkdir -p "$DATA_DIR/baserow"
 
-# Create a .env file for n8n from the example
-cp /home/silezmogul/Documents/Stemadeck-companion/steamdeck-podman-apps/config/n8n/.env.example /home/silezmogul/Documents/Stemadeck-companion/steamdeck-podman-apps/config/n8n/.env
+# Pull Docker/Podman images
+podman pull docker.io/n8nio/n8n
+podman pull docker.io/baserow/baserow
+podman pull docker.io/library/postgres:latest
+podman pull docker.io/koboldai/koboldai
+podman pull docker.io/matrixdotorg/synapse
 
-# Create a .env file for Baserow from the example
-cp /home/silezmogul/Documents/Stemadeck-companion/steamdeck-podman-apps/config/baserow/.env.example /home/silezmogul/Documents/Stemadeck-companion/steamdeck-podman-apps/config/baserow/.env
+# Copy example configuration files if they exist
+if [ -f "./config/n8n/.env.example" ]; then
+  cp "./config/n8n/.env.example" "$CONFIG_DIR/n8n/.env"
+fi
 
-# Notify user of completion
+if [ -f "./config/baserow/.env.example" ]; then
+  cp "./config/baserow/.env.example" "$CONFIG_DIR/baserow/.env"
+fi
+
 echo "Setup completed. All necessary directories created and images pulled."
